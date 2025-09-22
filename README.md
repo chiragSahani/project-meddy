@@ -50,32 +50,32 @@ The application follows a clean, layered architecture with clear separation of c
 
 ```mermaid
 graph TB
-    subgraph "Presentation Layer"
-        A[Components]
-        B[Pages]
+    subgraph "🎨 Presentation Layer"
+        A["🧩 Components<br/>(UI Elements)"]
+        B["📄 Pages<br/>(Route Components)"]
     end
 
-    subgraph "Business Logic Layer"
-        C[Custom Hooks]
-        D[State Management]
+    subgraph "🧠 Business Logic Layer"
+        C["🎣 Custom Hooks<br/>(Data Management)"]
+        D["🔄 State Management<br/>(React State)"]
     end
 
-    subgraph "Data Access Layer"
-        E[API Services]
-        F[Data Adapters]
-        G[Caching Layer]
+    subgraph "💾 Data Access Layer"
+        E["🌐 API Services<br/>(CoinGecko API)"]
+        F["🔄 Data Adapters<br/>(Transform Data)"]
+        G["⚡ Caching Layer<br/>(30s Cache)"]
     end
 
-    subgraph "Type Definitions Layer"
-        H[TypeScript Types]
-        I[Domain Models]
-        J[API Interfaces]
+    subgraph "📝 Type Definitions Layer"
+        H["🔷 TypeScript Types<br/>(Type Safety)"]
+        I["🏗️ Domain Models<br/>(Business Objects)"]
+        J["🔌 API Interfaces<br/>(External Contracts)"]
     end
 
-    subgraph "Utility Layer"
-        K[Formatters]
-        L[Helpers]
-        M[Constants]
+    subgraph "🛠️ Utility Layer"
+        K["💰 Formatters<br/>(Currency, Numbers)"]
+        L["⚙️ Helpers<br/>(Common Functions)"]
+        M["📊 Constants<br/>(App Config)"]
     end
 
     A --> C
@@ -88,19 +88,19 @@ graph TB
     C --> K
     A --> L
 
-    style A fill:#e1f5fe
-    style B fill:#e1f5fe
-    style C fill:#f3e5f5
-    style D fill:#f3e5f5
-    style E fill:#e8f5e8
-    style F fill:#e8f5e8
-    style G fill:#e8f5e8
-    style H fill:#fff3e0
-    style I fill:#fff3e0
-    style J fill:#fff3e0
-    style K fill:#fce4ec
-    style L fill:#fce4ec
-    style M fill:#fce4ec
+    style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style B fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    style C fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style D fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style E fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    style F fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    style G fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    style H fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style I fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style J fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style K fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    style L fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    style M fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
 ```
 
 ### Project Structure
