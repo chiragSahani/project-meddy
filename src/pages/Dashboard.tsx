@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, Wallet, Bell, Menu } from 'lucide-react';
+import { Star, Bell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCoinsData } from '../hooks/useCoinsData';
 import { CoinTable } from '../components/CoinTable';
@@ -8,7 +8,6 @@ import { NavigationCard } from '../components/NavigationCard';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
 
   const {
@@ -36,14 +35,6 @@ export const Dashboard: React.FC = () => {
         
         <header className="flex items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-4">
-            <button
-              aria-label="Toggle sidebar"
-              onClick={() => setSidebarOpen((s) => !s)}
-              className="p-2 rounded-lg backdrop-blur-sm bg-white/4 ring-1 ring-white/6 hover:scale-105 transition-transform"
-            >
-              <Menu className="w-5 h-5 text-white/90" />
-            </button>
-
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6EE7F9]/20 to-[#C084FC]/18 flex items-center justify-center ring-1 ring-white/6 overflow-hidden">
                 <img
@@ -81,10 +72,6 @@ export const Dashboard: React.FC = () => {
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#7AF27A] shadow-[0_0_10px_rgba(122,242,122,0.45)]" />
             </button>
 
-            <button className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-white/6 to-white/4 backdrop-blur-sm hover:scale-105 transition">
-              <Wallet className="w-4 h-4" />
-              <span className="text-sm font-medium">Connect Wallet</span>
-            </button>
           </div>
         </header>
 
@@ -99,34 +86,7 @@ export const Dashboard: React.FC = () => {
           />
         </div>
 
-        <main className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Sidebar (mobile collapsible) */}
-          <AnimatePresence>
-            {sidebarOpen && (
-              <motion.aside
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -16 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-                className="lg:col-span-3 bg-white/4 rounded-2xl p-4 backdrop-blur border border-white/6"
-              >
-                <nav className="flex flex-col gap-2">
-                  {['Overview', 'Markets', 'Portfolio', 'Transactions', 'Watchlist', 'Settings'].map((label) => (
-                    <a
-                      key={label}
-                      className="block px-3 py-2 rounded-xl hover:bg-white/6 transition text-sm"
-                      href="#"
-                    >
-                      {label}
-                    </a>
-                  ))}
-                </nav>
-              </motion.aside>
-            )}
-          </AnimatePresence>
-
-          {/* Main content */}
-          <section className="lg:col-span-9 space-y-6">
+        <main className="space-y-6">
             {/* Stats row */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <motion.div whileHover={{ scale: 1.02 }} className="p-4 rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
@@ -269,7 +229,6 @@ export const Dashboard: React.FC = () => {
                 <div className="text-sm text-white/60">Track your portfolio performance and transaction history here.</div>
               </motion.div>
             </div>
-          </section>
         </main>
 
         {/* Notifications panel */}

@@ -6,7 +6,7 @@ interface LoadingSkeletonProps {
 
 export const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ className = '' }) => {
   return (
-    <div className={`animate-pulse bg-gray-200 rounded ${className}`}>
+    <div className={`animate-pulse bg-white/10 rounded ${className}`}>
       <div className="invisible">Loading...</div>
     </div>
   );
@@ -14,7 +14,7 @@ export const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({ className = ''
 
 export const CoinRowSkeleton: React.FC = () => {
   return (
-    <tr className="border-b border-gray-100">
+    <tr className="border-b border-white/10">
       <td className="px-6 py-4">
         <LoadingSkeleton className="w-8 h-4" />
       </td>
@@ -48,7 +48,7 @@ export const CoinRowSkeleton: React.FC = () => {
 
 export const HighlightCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-white rounded-lg p-4 border border-gray-100">
+    <div className="bg-white/5 rounded-lg p-4 border border-white/10">
       <div className="flex items-center gap-3 mb-2">
         <LoadingSkeleton className="w-6 h-6 rounded-full" />
         <div className="space-y-1 flex-1">

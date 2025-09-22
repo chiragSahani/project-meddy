@@ -1,10 +1,12 @@
 import type { CoinMarketData, TrendingResponse, CoinDetail, ApiError } from '../types';
+import { mockDataService } from './mockDataService';
 
 class CoinGeckoApiService {
   private baseUrl: string;
   private apiKey?: string;
   private cache = new Map<string, { data: unknown; timestamp: number }>();
   private cacheTimeout = 30000;
+  private useMockData = false;
 
   constructor() {
     this.baseUrl = import.meta.env.VITE_COINGECKO_API_URL || 'https://api.coingecko.com/api/v3';
@@ -93,29 +95,59 @@ class CoinGeckoApiService {
     sparkline = false,
     priceChangePercentage = '24h,7d'
   ): Promise<CoinMarketData[]> {
-    return this.makeRequest('/coins/markets', {
-      vs_currency: vsCurrency,
-      order,
-      per_page: perPage,
-      page,
-      sparkline,
-      price_change_percentage: priceChangePercentage,
-    });
+    if (this.useMockData) {
+      return mockDataService.getCoinsMarket(vsCurrency, order, perPage, page, sparkline, priceChangePercentage);
+    }
+
+    try {
+      return await this.makeRequest('/coins/markets', {
+        vs_currency: vsCurrency,
+        order,
+        per_page: perPage,
+        page,
+        sparkline,
+        price_change_percentage: priceChangePercentage,
+      });
+    } catch (error) {
+      console.warn('API request failed, falling back to mock data:', error);
+      this.useMockData = true;
+      return mockDataService.getCoinsMarket(vsCurrency, order, perPage, page, sparkline, priceChangePercentage);
+    }
   }
 
   async getTrending(): Promise<TrendingResponse> {
-    return this.makeRequest('/search/trending');
+    if (this.useMockData) {
+      return mockDataService.getTrending();
+    }
+
+    try {
+      return await this.makeRequest('/search/trending');
+    } catch (error) {
+      console.warn('API request failed, falling back to mock data:', error);
+      this.useMockData = true;
+      return mockDataService.getTrending();
+    }
   }
 
   async getCoinDetail(id: string): Promise<CoinDetail> {
-    return this.makeRequest(`/coins/${id}`, {
-      localization: false,
-      tickers: false,
-      market_data: true,
-      community_data: false,
-      developer_data: false,
-      sparkline: false,
-    });
+    if (this.useMockData) {
+      return mockDataService.getCoinDetail(id);
+    }
+
+    try {
+      return await this.makeRequest(`/coins/${id}`, {
+        localization: false,
+        tickers: false,
+        market_data: true,
+        community_data: false,
+        developer_data: false,
+        sparkline: false,
+      });
+    } catch (error) {
+      console.warn('API request failed, falling back to mock data:', error);
+      this.useMockData = true;
+      return mockDataService.getCoinDetail(id);
+    }
   }
 
   clearCache(): void {

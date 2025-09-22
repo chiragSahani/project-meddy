@@ -106,16 +106,16 @@ export const CoinTable: React.FC<CoinTableProps> = ({
               <th className="px-6 py-4 text-left text-xs font-medium text-white/60 uppercase tracking-wider">
                 Name
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 Price
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 24h Change
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 Market Cap
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 Volume (24h)
               </th>
             </tr>
