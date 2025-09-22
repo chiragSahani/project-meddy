@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, TrendingUp, TrendingDown, BarChart3, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useHighlights } from '../hooks/useHighlights';
 import { useCoinDetail } from '../hooks/useCoinDetail';
 import { HighlightCard } from '../components/HighlightCard';
@@ -45,98 +46,92 @@ export const Highlights: React.FC = () => {
     clearCoinDetail();
   }, [clearCoinDetail]);
 
-  if (highlightsError) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-8">
-            <button
-              onClick={handleBackToDashboard}
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-4"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Dashboard
-            </button>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Market Highlights</h1>
-          </div>
-          <ErrorMessage message={highlightsError} onRetry={retryHighlights} />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_left,_#071421,_#02060a)] text-white font-inter">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Header */}
         <div className="mb-8">
           <button
             onClick={handleBackToDashboard}
-            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-4 transition-colors"
+            className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Dashboard
           </button>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Market Highlights</h1>
-          <p className="text-gray-600">
-            Discover top performing cryptocurrencies and market trends
-          </p>
+
+          <h1 className="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-green-300">
+            Market Highlights
+          </h1>
+          <p className="text-white/60 mt-2">Discover top performing cryptocurrencies and market trends</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
-          <HighlightCard
-            title="Top Gainers (24h)"
-            icon={<TrendingUp className="w-4 h-4 text-blue-600" />}
-            coins={topGainers}
-            loading={highlightsLoading}
-            onCoinClick={handleCoinClick}
-            showPercentage={true}
-          />
+        {highlightsError ? (
+          <div className="mb-6">
+            <ErrorMessage message={highlightsError} onRetry={retryHighlights} />
+          </div>
+        ) : (
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+            <HighlightCard
+              title="Top Gainers (24h)"
+              icon={<TrendingUp className="w-4 h-4 text-[#6EE7F9]" />}
+              coins={topGainers}
+              loading={highlightsLoading}
+              onCoinClick={handleCoinClick}
+              showPercentage={true}
+              className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
+            />
 
-          <HighlightCard
-            title="Top Losers (24h)"
-            icon={<TrendingDown className="w-4 h-4 text-blue-600" />}
-            coins={topLosers}
-            loading={highlightsLoading}
-            onCoinClick={handleCoinClick}
-            showPercentage={true}
-          />
+            <HighlightCard
+              title="Top Losers (24h)"
+              icon={<TrendingDown className="w-4 h-4 text-[#B388FF]" />}
+              coins={topLosers}
+              loading={highlightsLoading}
+              onCoinClick={handleCoinClick}
+              showPercentage={true}
+              className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
+            />
 
-          <HighlightCard
-            title="Highest Volume"
-            icon={<BarChart3 className="w-4 h-4 text-blue-600" />}
-            coins={highestVolume}
-            loading={highlightsLoading}
-            onCoinClick={handleCoinClick}
-            showVolume={true}
-          />
+            <HighlightCard
+              title="Highest Volume"
+              icon={<BarChart3 className="w-4 h-4 text-[#7AF27A]" />}
+              coins={highestVolume}
+              loading={highlightsLoading}
+              onCoinClick={handleCoinClick}
+              showVolume={true}
+              className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
+            />
 
-          <HighlightCard
-            title="Trending Coins"
-            icon={<Star className="w-4 h-4 text-blue-600" />}
-            coins={trendingCoins}
-            loading={highlightsLoading}
-            onCoinClick={handleCoinClick}
-          />
+            <HighlightCard
+              title="Trending Coins"
+              icon={<Star className="w-4 h-4 text-[#C084FC]" />}
+              coins={trendingCoins}
+              loading={highlightsLoading}
+              onCoinClick={handleCoinClick}
+              className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
+            />
 
-          <HighlightCard
-            title="7d Top Performers"
-            icon={<TrendingUp className="w-4 h-4 text-blue-600" />}
-            coins={top7dPerformers}
-            loading={highlightsLoading}
-            onCoinClick={handleCoinClick}
-            show7dPercentage={true}
-          />
-        </div>
+            <HighlightCard
+              title="7d Top Performers"
+              icon={<TrendingUp className="w-4 h-4 text-[#6EE7F9]" />}
+              coins={top7dPerformers}
+              loading={highlightsLoading}
+              onCoinClick={handleCoinClick}
+              show7dPercentage={true}
+              className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
+            />
+          </motion.div>
+        )}
+
+        {/* Coin detail modal (keeps existing props) */}
+        <CoinDetailModal
+          isOpen={modalOpen}
+          onClose={handleModalClose}
+          coinDetail={coinDetail}
+          loading={coinDetailLoading}
+          error={coinDetailError}
+          onRetry={retryCoinDetail}
+        />
       </div>
-
-      <CoinDetailModal
-        isOpen={modalOpen}
-        onClose={handleModalClose}
-        coinDetail={coinDetail}
-        loading={coinDetailLoading}
-        error={coinDetailError}
-        onRetry={retryCoinDetail}
-      />
     </div>
   );
 };

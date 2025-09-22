@@ -38,14 +38,14 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50"
       onClick={handleBackdropClick}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
     >
-      <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div className="bg-[#071421]/95 backdrop-blur-md border border-white/10 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between">
+        <div className="sticky top-0 bg-[#071421]/95 backdrop-blur-md border-b border-white/10 p-6 flex items-center justify-between">
           {loading ? (
             <div className="flex items-center gap-3">
               <LoadingSkeleton className="w-10 h-10 rounded-full" />

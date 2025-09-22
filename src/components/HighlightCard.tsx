@@ -11,6 +11,7 @@ interface HighlightCardProps {
   showPercentage?: boolean;
   showVolume?: boolean;
   show7dPercentage?: boolean;
+  className?: string;
 }
 
 export const HighlightCard: React.FC<HighlightCardProps> = ({
@@ -22,6 +23,7 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
   showPercentage = false,
   showVolume = false,
   show7dPercentage = false,
+  className = '',
 }) => {
   const handleCoinClick = (coinId: string) => {
     onCoinClick(coinId);
@@ -36,22 +38,22 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100">
-        <div className="p-4 border-b border-gray-100">
+      <div className={`bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl ${className}`}>
+        <div className="p-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gray-200 rounded-lg animate-pulse"></div>
-            <div className="w-32 h-5 bg-gray-200 rounded animate-pulse"></div>
+            <div className="w-8 h-8 bg-white/10 rounded-lg animate-pulse"></div>
+            <div className="w-32 h-5 bg-white/10 rounded animate-pulse"></div>
           </div>
         </div>
         <div className="p-4 space-y-3">
           {Array.from({ length: 5 }).map((_, index) => (
             <div key={index} className="flex items-center gap-3">
-              <div className="w-6 h-6 bg-gray-200 rounded-full animate-pulse"></div>
+              <div className="w-6 h-6 bg-white/10 rounded-full animate-pulse"></div>
               <div className="flex-1">
-                <div className="w-24 h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
-                <div className="w-16 h-3 bg-gray-200 rounded animate-pulse"></div>
+                <div className="w-24 h-4 bg-white/10 rounded animate-pulse mb-1"></div>
+                <div className="w-16 h-3 bg-white/10 rounded animate-pulse"></div>
               </div>
-              <div className="w-16 h-4 bg-gray-200 rounded animate-pulse"></div>
+              <div className="w-16 h-4 bg-white/10 rounded animate-pulse"></div>
             </div>
           ))}
         </div>
@@ -60,13 +62,13 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 h-full flex flex-col">
-      <div className="p-4 border-b border-gray-100 flex-shrink-0">
+    <div className={`bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl h-full flex flex-col ${className}`}>
+      <div className="p-4 border-b border-white/10 flex-shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
             {icon}
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 truncate">{title}</h3>
+          <h3 className="text-lg font-semibold text-white truncate">{title}</h3>
         </div>
       </div>
 
@@ -78,11 +80,11 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
               onClick={() => handleCoinClick(coin.id)}
               onKeyPress={(e) => handleKeyPress(e, coin.id)}
               tabIndex={0}
-              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors group"
+              className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-inset transition-colors group"
               role="button"
               aria-label={`View details for ${coin.name}`}
             >
-              <span className="text-sm font-medium text-gray-500 w-4 flex-shrink-0">
+              <span className="text-sm font-medium text-white/60 w-4 flex-shrink-0">
                 {index + 1}
               </span>
 
@@ -95,15 +97,15 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
 
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                  <p className="text-sm font-medium text-white truncate">
                     {coin.name}
                   </p>
-                  <span className="text-xs text-gray-500 uppercase flex-shrink-0">
+                  <span className="text-xs text-white/60 uppercase flex-shrink-0">
                     {coin.symbol}
                   </span>
                 </div>
                 {coin.marketCapRank && (
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-white/50">
                     Rank #{coin.marketCapRank}
                   </p>
                 )}
@@ -111,7 +113,7 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
 
               <div className="text-right flex-shrink-0">
                 {coin.currentPrice > 0 && (
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-white">
                     {formatCurrency(coin.currentPrice)}
                   </p>
                 )}
@@ -120,19 +122,19 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
                   <div className="text-right">
                     <p
                       className={`text-xs font-medium ${
-                        coin.priceChangePercentage7d >= 0 ? 'text-green-600' : 'text-red-600'
+                        coin.priceChangePercentage7d >= 0 ? 'text-[#7AF27A]' : 'text-red-400'
                       }`}
                     >
                       {formatPercentage(coin.priceChangePercentage7d)}
                     </p>
-                    <p className="text-xs text-gray-500">7d change</p>
+                    <p className="text-xs text-white/50">7d change</p>
                   </div>
                 )}
 
                 {showPercentage && !show7dPercentage && (
                   <p
                     className={`text-xs font-medium ${
-                      coin.priceChangePercentage24h >= 0 ? 'text-green-600' : 'text-red-600'
+                      coin.priceChangePercentage24h >= 0 ? 'text-[#7AF27A]' : 'text-red-400'
                     }`}
                   >
                     {formatPercentage(coin.priceChangePercentage24h)}
@@ -140,7 +142,7 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
                 )}
 
                 {showVolume && coin.volume24h && (
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-white/60">
                     {formatNumber(coin.volume24h)}
                   </p>
                 )}

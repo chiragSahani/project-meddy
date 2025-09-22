@@ -42,11 +42,11 @@ export const CoinTable: React.FC<CoinTableProps> = ({
         onClick={() => handleRowClick(coin)}
         onKeyPress={(e) => handleKeyPress(e, coin)}
         tabIndex={0}
-        className="hover:bg-gray-50 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset transition-colors"
+        className="hover:bg-white/10 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-inset transition-colors"
         role="button"
         aria-label={`View details for ${coin.name}`}
       >
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
           #{coin.marketCapRank}
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
@@ -58,36 +58,36 @@ export const CoinTable: React.FC<CoinTableProps> = ({
               loading="lazy"
             />
             <div>
-              <div className="text-sm font-medium text-gray-900">{coin.name}</div>
-              <div className="text-sm text-gray-500 uppercase">{coin.symbol}</div>
+              <div className="text-sm font-medium text-white">{coin.name}</div>
+              <div className="text-sm text-white/60 uppercase">{coin.symbol}</div>
             </div>
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">
+        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-white">
           {formatCurrency(coin.currentPrice)}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
           <div className="flex flex-col items-end">
             <span
               className={`font-medium ${
-                coin.priceChangePercentage24h >= 0 ? 'text-green-600' : 'text-red-600'
+                coin.priceChangePercentage24h >= 0 ? 'text-[#7AF27A]' : 'text-red-400'
               }`}
             >
               {formatPercentage(coin.priceChangePercentage24h)}
             </span>
             <span
               className={`text-xs ${
-                coin.priceChange24h >= 0 ? 'text-green-600' : 'text-red-600'
+                coin.priceChange24h >= 0 ? 'text-[#7AF27A]' : 'text-red-400'
               }`}
             >
               {formatCurrency(coin.priceChange24h, true)}
             </span>
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">
+        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-white">
           {formatNumber(coin.marketCap)}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-gray-900">
+        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-white">
           {formatNumber(coin.volume24h)}
         </td>
       </tr>
@@ -95,15 +95,15 @@ export const CoinTable: React.FC<CoinTableProps> = ({
   }, [coins, handleRowClick, handleKeyPress]);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+    <div className="bg-white/3 backdrop-blur-sm rounded-lg shadow-sm border border-white/6 overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="bg-gray-50">
+          <thead className="bg-white/5">
             <tr>
-              <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-medium text-white/60 uppercase tracking-wider">
                 Rank
               </th>
-              <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-4 text-left text-xs font-medium text-white/60 uppercase tracking-wider">
                 Name
               </th>
               <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -120,7 +120,7 @@ export const CoinTable: React.FC<CoinTableProps> = ({
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-100">
+          <tbody className="bg-transparent divide-y divide-white/6">
             {loading && coins.length === 0 ? skeletonRows : coinRows}
             {loading && coins.length > 0 && skeletonRows}
           </tbody>
@@ -128,10 +128,10 @@ export const CoinTable: React.FC<CoinTableProps> = ({
       </div>
 
       {!loading && hasMore && (
-        <div className="p-4 text-center border-t border-gray-100">
+        <div className="p-4 text-center border-t border-white/6">
           <button
             onClick={onLoadMore}
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-0 transition-colors"
           >
             Load More
           </button>
@@ -139,14 +139,14 @@ export const CoinTable: React.FC<CoinTableProps> = ({
       )}
 
       {!loading && !hasMore && coins.length > 0 && (
-        <div className="p-4 text-center text-sm text-gray-500 border-t border-gray-100">
+        <div className="p-4 text-center text-sm text-white/60 border-t border-white/6">
           No more coins to load
         </div>
       )}
 
       {!loading && coins.length === 0 && (
-        <div className="p-8 text-center text-gray-500">
-          <p className="text-lg font-medium mb-2">No coins found</p>
+        <div className="p-8 text-center text-white/60">
+          <p className="text-lg font-medium mb-2 text-white">No coins found</p>
           <p className="text-sm">Try adjusting your search or filter criteria</p>
         </div>
       )}
