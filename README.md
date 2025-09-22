@@ -7,6 +7,9 @@ A modern, responsive cryptocurrency dashboard built with React and TypeScript th
 ![Vite](https://img.shields.io/badge/Vite-5.4.2-yellow)
 ![Tailwind](https://img.shields.io/badge/TailwindCSS-3.4.1-teal)
 
+## Live URL
+You can view the live application here: [https://project-meddy.netlify.app/](https://project-meddy.netlify.app/)
+
 ## 🚀 Features
 
 ### Core Functionality
