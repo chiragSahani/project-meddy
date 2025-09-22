@@ -1,6 +1,4 @@
 import type { CoinMarketData, TrendingResponse, CoinDetail } from '../types';
-
-// Mock cryptocurrency data for testing when API is not available
 const mockCoinsData: CoinMarketData[] = [
   {
     id: 'bitcoin',
@@ -136,7 +134,6 @@ const mockCoinsData: CoinMarketData[] = [
   }
 ];
 
-// Generate more mock data to simulate pagination
 const generateMoreMockCoins = (startRank: number, count: number): CoinMarketData[] => {
   const coinNames = [
     'Cardano', 'Dogecoin', 'TRON', 'Avalanche', 'Chainlink', 'Polygon', 'Litecoin', 'Polkadot',
@@ -202,12 +199,10 @@ class MockDataService {
     sparkline = false,
     priceChangePercentage = '24h,7d'
   ): Promise<CoinMarketData[]> {
-    // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 500));
 
     let sortedCoins = [...this.allCoins];
 
-    // Apply sorting
     switch (order) {
       case 'market_cap_desc':
         sortedCoins.sort((a, b) => b.market_cap - a.market_cap);
@@ -237,7 +232,6 @@ class MockDataService {
         sortedCoins.sort((a, b) => a.market_cap_rank - b.market_cap_rank);
     }
 
-    // Apply pagination
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
 
@@ -304,7 +298,6 @@ class MockDataService {
   }
 
   clearCache(): void {
-    // Mock implementation - no cache to clear
   }
 }
 

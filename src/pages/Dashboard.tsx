@@ -31,102 +31,99 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_left,_#071421,_#02060a)] text-white antialiased">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         
-        <header className="flex items-center justify-between gap-4 mb-8">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6EE7F9]/20 to-[#C084FC]/18 flex items-center justify-center ring-1 ring-white/6 overflow-hidden">
+        <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+          <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#6EE7F9]/20 to-[#C084FC]/18 flex items-center justify-center ring-1 ring-white/6 overflow-hidden">
                 <img
                   src="https://res.cloudinary.com/dlyctssmy/image/upload/v1758550805/crypto-portfolio-management-vector-58200597_dfropf.avif"
                   alt="Crypto Dashboard Logo"
-                  className="w-8 h-8 object-contain"
+                  className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
                 />
               </div>
-              <div>
-                <h1 className="text-2xl font-semibold tracking-tight">Crypto Dashboard</h1>
-                <p className="text-sm text-white/60">Real-time cryptocurrency market data & analytics</p>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-lg sm:text-xl lg:text-2xl font-semibold tracking-tight truncate">Crypto Dashboard</h1>
+                <p className="text-xs sm:text-sm text-white/60 hidden sm:block">Real-time cryptocurrency market data & analytics</p>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 self-end sm:self-auto">
             <button
-              className="p-2 rounded-lg backdrop-blur-sm bg-white/4 hover:bg-white/6 transition relative"
+              className="p-2 sm:p-2 rounded-lg backdrop-blur-sm bg-white/4 hover:bg-white/6 transition relative"
               aria-label="Notifications"
               onClick={() => setShowNotifications((s) => !s)}
             >
-              <Bell className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#7AF27A] shadow-[0_0_10px_rgba(122,242,122,0.45)]" />
+              <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="absolute -top-1 -right-1 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#7AF27A] shadow-[0_0_10px_rgba(122,242,122,0.45)]" />
             </button>
           </div>
         </header>
 
-        {/* Top nav card */}
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
           <NavigationCard
             title="Market Highlights"
             description="View top gainers, losers, trending coins and performance metrics"
-            icon={<Star className="w-6 h-6 text-[#8B5CF6]" />}
+            icon={<Star className="w-5 h-5 sm:w-6 sm:h-6 text-[#8B5CF6]" />}
             onClick={handleHighlightsClick}
-            className="mb-6 bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl"
+            className="bg-white/4 backdrop-blur-md border border-white/10 rounded-xl sm:rounded-2xl"
           />
         </div>
 
-        <main className="space-y-6">
-            {/* Stats row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <motion.div whileHover={{ scale: 1.02 }} className="p-4 rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
+        <main className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <motion.div whileHover={{ scale: 1.02 }} className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs text-white/70">Market Cap</p>
-                    <p className="mt-1 font-semibold text-lg">$2.1T</p>
+                    <p className="mt-1 font-semibold text-sm sm:text-lg">$2.1T</p>
                   </div>
-                  <div className="text-sm text-white/60">📈</div>
+                  <div className="text-xs sm:text-sm text-white/60">📈</div>
                 </div>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.02 }} className="p-4 rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
+              <motion.div whileHover={{ scale: 1.02 }} className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs text-white/70">24h Volume</p>
-                    <p className="mt-1 font-semibold text-lg">$95.2B</p>
+                    <p className="mt-1 font-semibold text-sm sm:text-lg">$95.2B</p>
                   </div>
-                  <div className="text-sm text-white/60">💰</div>
+                  <div className="text-xs sm:text-sm text-white/60">💰</div>
                 </div>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.02 }} className="p-4 rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
+              <motion.div whileHover={{ scale: 1.02 }} className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs text-white/70">BTC Dominance</p>
                     <p className="mt-1 font-semibold text-lg text-[#7AF27A]">54.3%</p>
                   </div>
-                  <div className="text-sm text-white/60">₿</div>
+                  <div className="text-xs sm:text-sm text-white/60">₿</div>
                 </div>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.02 }} className="p-4 rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
+              <motion.div whileHover={{ scale: 1.02 }} className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-b from-white/4 to-white/6 border border-white/6 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-xs text-white/70">Active Coins</p>
-                    <p className="mt-1 font-semibold text-lg">14,892</p>
+                    <p className="mt-1 font-semibold text-sm sm:text-lg">14,892</p>
                   </div>
-                  <div className="text-sm text-white/60">🪙</div>
+                  <div className="text-xs sm:text-sm text-white/60">🪙</div>
                 </div>
               </motion.div>
             </div>
 
-            {/* Control + Table Card */}
-            <div className="rounded-2xl overflow-hidden bg-white/3 border border-white/6 backdrop-blur-sm shadow-sm">
-              <div className="p-4 border-b border-white/6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                  <h2 className="text-lg font-semibold tracking-tight">All Cryptocurrencies</h2>
-                  <p className="text-sm text-white/60 mt-1">Complete market data with real-time prices</p>
+            <div className="rounded-xl sm:rounded-2xl overflow-hidden bg-white/3 border border-white/6 backdrop-blur-sm shadow-sm">
+              <div className="p-3 sm:p-4 border-b border-white/6 flex flex-col gap-3 sm:gap-4">
+                <div className="text-center sm:text-left">
+                  <h2 className="text-base sm:text-lg font-semibold tracking-tight">All Cryptocurrencies</h2>
+                  <p className="text-xs sm:text-sm text-white/60 mt-1">Complete market data with real-time prices</p>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="relative">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+                  <div className="relative flex-1 sm:flex-initial">
                     <label htmlFor="dashboard-search" className="sr-only">Search cryptocurrencies</label>
                     <input
                       id="dashboard-search"
@@ -134,7 +131,7 @@ export const Dashboard: React.FC = () => {
                       placeholder="Search coins..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full sm:w-64 px-3 py-2 rounded-lg bg-white/5 placeholder-white/60 outline-none focus:ring-2 focus:ring-[#6EE7F9]/30"
+                      className="w-full sm:w-48 md:w-64 px-3 py-2 text-sm rounded-lg bg-white/5 placeholder-white/60 outline-none focus:ring-2 focus:ring-[#6EE7F9]/30"
                       aria-label="Search cryptocurrencies"
                     />
                   </div>
@@ -144,22 +141,21 @@ export const Dashboard: React.FC = () => {
                     id="dashboard-sort"
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                    className="px-3 py-2 rounded-lg bg-white/5 outline-none focus:ring-2 focus:ring-[#B388FF]/30 text-white"
+                    className="w-full sm:w-auto px-3 py-2 text-sm rounded-lg bg-[#071421]/90 border border-white/20 text-white outline-none focus:ring-2 focus:ring-[#6EE7F9]/50 focus:border-transparent transition-all backdrop-blur-sm"
                     aria-label="Sort cryptocurrencies by"
                   >
-                    <option value="market_cap_desc">Market Cap ↓</option>
-                    <option value="market_cap_asc">Market Cap ↑</option>
-                    <option value="price_desc">Price ↓</option>
-                    <option value="price_asc">Price ↑</option>
-                    <option value="percent_change_desc">24h Change ↓</option>
-                    <option value="percent_change_asc">24h Change ↑</option>
-                    <option value="volume_desc">Volume ↓</option>
-                    <option value="volume_asc">Volume ↑</option>
+                    <option value="market_cap_desc" className="bg-[#071421] text-white">Market Cap ↓</option>
+                    <option value="market_cap_asc" className="bg-[#071421] text-white">Market Cap ↑</option>
+                    <option value="price_desc" className="bg-[#071421] text-white">Price ↓</option>
+                    <option value="price_asc" className="bg-[#071421] text-white">Price ↑</option>
+                    <option value="percent_change_desc" className="bg-[#071421] text-white">24h Change ↓</option>
+                    <option value="percent_change_asc" className="bg-[#071421] text-white">24h Change ↑</option>
+                    <option value="volume_desc" className="bg-[#071421] text-white">Volume ↓</option>
+                    <option value="volume_asc" className="bg-[#071421] text-white">Volume ↑</option>
                   </select>
                 </div>
               </div>
 
-              {/* error / table area */}
               {coinsError ? (
                 <div className="p-6 text-center">
                   <div className="text-rose-400 mb-4">{coinsError}</div>
@@ -183,11 +179,10 @@ export const Dashboard: React.FC = () => {
               )}
             </div>
 
-            {/* Bottom row: watchlist */}
-            <div className="grid grid-cols-1 gap-4">
-              <motion.div className="rounded-2xl p-4 bg-white/3 border border-white/6 backdrop-blur-sm">
+            <div className="grid grid-cols-1 gap-3 sm:gap-4">
+              <motion.div className="rounded-xl sm:rounded-2xl p-3 sm:p-4 bg-white/3 border border-white/6 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-semibold">Watchlist</h3>
+                  <h3 className="text-xs sm:text-sm font-semibold">Watchlist</h3>
                   <span className="text-xs text-white/60">3 items</span>
                 </div>
                 <div className="mt-3 space-y-2">
@@ -206,16 +201,25 @@ export const Dashboard: React.FC = () => {
             </div>
         </main>
 
-        {/* Notifications panel */}
         <AnimatePresence>
           {showNotifications && (
-            <motion.aside
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="fixed right-6 bottom-6 w-96 rounded-2xl p-4 bg-white/4 border border-white/6 backdrop-blur-sm shadow-lg"
-            >
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+                onClick={() => setShowNotifications(false)}
+              />
+
+              <motion.aside
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+                className="fixed right-3 bottom-3 sm:right-6 sm:bottom-6 w-[calc(100vw-1.5rem)] max-w-sm sm:max-w-md lg:max-w-lg rounded-xl sm:rounded-2xl p-3 sm:p-4 bg-white/4 border border-white/6 backdrop-blur-sm shadow-lg z-50"
+              >
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-semibold">Notifications</h4>
                 <button onClick={() => setShowNotifications(false)} className="text-sm text-white/60">Close</button>
@@ -242,6 +246,7 @@ export const Dashboard: React.FC = () => {
                 </div>
               </div>
             </motion.aside>
+            </>
           )}
         </AnimatePresence>
       </div>

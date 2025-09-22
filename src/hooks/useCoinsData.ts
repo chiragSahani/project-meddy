@@ -68,17 +68,14 @@ export const useCoinsData = (): UseCoinsDataReturn => {
       setPage(nextPage);
       fetchCoins(nextPage, false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, hasMore, page]);
 
   const retry = useCallback(() => {
     setError(null);
     setPage(1);
     fetchCoins(1, true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Filter coins based on search term
   const filteredCoins = useMemo(() => {
     if (!searchTerm) return coins;
     const term = searchTerm.toLowerCase();
@@ -88,7 +85,6 @@ export const useCoinsData = (): UseCoinsDataReturn => {
     ));
   }, [coins, searchTerm]);
 
-  // Handle search with debouncing
   const debouncedSetSearchTerm = useCallback((term: string) => {
     if (searchTimeoutRef.current) {
       clearTimeout(searchTimeoutRef.current);
@@ -101,23 +97,19 @@ export const useCoinsData = (): UseCoinsDataReturn => {
     searchTimeoutRef.current = timeout;
   }, []);
 
-  // Reset and fetch when sortBy changes
   useEffect(() => {
     setPage(1);
     fetchCoins(1, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortBy]); // Remove fetchCoins dependency to prevent infinite loop
+  }, [sortBy]);
 
-  // Initial fetch - only run once
   useEffect(() => {
     if (!initialFetchDone.current) {
       initialFetchDone.current = true;
       fetchCoins(1, true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Remove fetchCoins dependency to prevent infinite loop
+  }, []);
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (searchTimeoutRef.current) {

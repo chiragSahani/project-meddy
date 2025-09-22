@@ -55,11 +55,11 @@ export const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
             id="sort-select"
             value={sortBy}
             onChange={(e) => onSortChange(e.target.value as SortBy)}
-            className="w-full sm:w-auto px-4 py-2 border border-white/20 rounded-lg bg-white/10 text-white focus:ring-2 focus:ring-blue-400/50 focus:border-transparent outline-none cursor-pointer transition-all"
+            className="w-full sm:w-auto px-4 py-2 border border-white/20 rounded-lg bg-[#071421]/90 text-white focus:ring-2 focus:ring-blue-400/50 focus:border-transparent outline-none cursor-pointer transition-all backdrop-blur-sm"
             aria-label="Sort cryptocurrencies by"
           >
             {sortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value} value={option.value} className="bg-[#071421] text-white">
                 {option.label}
               </option>
             ))}

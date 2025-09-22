@@ -46,27 +46,27 @@ export const CoinTable: React.FC<CoinTableProps> = ({
         role="button"
         aria-label={`View details for ${coin.name}`}
       >
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
+        <td className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-white">
           #{coin.marketCapRank}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="flex items-center gap-3">
+        <td className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 whitespace-nowrap">
+          <div className="flex items-center gap-2 sm:gap-3">
             <img
               src={coin.image}
               alt={`${coin.name} logo`}
-              className="w-8 h-8 rounded-full"
+              className="w-6 h-6 sm:w-8 sm:h-8 rounded-full flex-shrink-0"
               loading="lazy"
             />
-            <div>
-              <div className="text-sm font-medium text-white">{coin.name}</div>
-              <div className="text-sm text-white/60 uppercase">{coin.symbol}</div>
+            <div className="min-w-0">
+              <div className="text-xs sm:text-sm font-medium text-white truncate">{coin.name}</div>
+              <div className="text-xs text-white/60 uppercase">{coin.symbol}</div>
             </div>
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-white">
+        <td className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm text-white">
           {formatCurrency(coin.currentPrice)}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm">
+        <td className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm">
           <div className="flex flex-col items-end">
             <span
               className={`font-medium ${
@@ -76,7 +76,7 @@ export const CoinTable: React.FC<CoinTableProps> = ({
               {formatPercentage(coin.priceChangePercentage24h)}
             </span>
             <span
-              className={`text-xs ${
+              className={`text-xs hidden sm:block ${
                 coin.priceChange24h >= 0 ? 'text-[#7AF27A]' : 'text-red-400'
               }`}
             >
@@ -84,10 +84,10 @@ export const CoinTable: React.FC<CoinTableProps> = ({
             </span>
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-white">
+        <td className="hidden md:table-cell px-3 sm:px-4 lg:px-6 py-3 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm text-white">
           {formatNumber(coin.marketCap)}
         </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-white">
+        <td className="hidden lg:table-cell px-3 sm:px-4 lg:px-6 py-3 sm:py-4 whitespace-nowrap text-right text-xs sm:text-sm text-white">
           {formatNumber(coin.volume24h)}
         </td>
       </tr>
@@ -100,22 +100,22 @@ export const CoinTable: React.FC<CoinTableProps> = ({
         <table className="w-full">
           <thead className="bg-white/5">
             <tr>
-              <th className="px-6 py-4 text-left text-xs font-medium text-white/60 uppercase tracking-wider">
+              <th className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 text-left text-xs font-medium text-white/60 uppercase tracking-wider">
                 Rank
               </th>
-              <th className="px-6 py-4 text-left text-xs font-medium text-white/60 uppercase tracking-wider">
+              <th className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 text-left text-xs font-medium text-white/60 uppercase tracking-wider">
                 Name
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
+              <th className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 Price
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
+              <th className="px-3 sm:px-4 lg:px-6 py-3 sm:py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 24h Change
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
+              <th className="hidden md:table-cell px-3 sm:px-4 lg:px-6 py-3 sm:py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 Market Cap
               </th>
-              <th className="px-6 py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
+              <th className="hidden lg:table-cell px-3 sm:px-4 lg:px-6 py-3 sm:py-4 text-right text-xs font-medium text-white/60 uppercase tracking-wider">
                 Volume (24h)
               </th>
             </tr>

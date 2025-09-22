@@ -71,7 +71,6 @@ export const useHighlights = (): UseHighlightsReturn => {
 
   useEffect(() => {
     fetchHighlights();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

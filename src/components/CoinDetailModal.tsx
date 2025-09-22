@@ -38,14 +38,13 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 z-50"
       onClick={handleBackdropClick}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
     >
-      <div className="bg-[#071421]/95 backdrop-blur-md border border-white/10 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-        {/* Header */}
-        <div className="sticky top-0 bg-[#071421]/95 backdrop-blur-md border-b border-white/10 p-6 flex items-center justify-between">
+      <div className="bg-[#071421]/95 backdrop-blur-md border border-white/10 rounded-lg sm:rounded-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl">
+        <div className="sticky top-0 bg-[#071421]/95 backdrop-blur-md border-b border-white/10 p-4 sm:p-6 flex items-center justify-between">
           {loading ? (
             <div className="flex items-center gap-3">
               <LoadingSkeleton className="w-10 h-10 rounded-full" />
@@ -79,15 +78,13 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {error && (
             <ErrorMessage message={error} onRetry={onRetry} className="mb-6" />
           )}
 
           {loading ? (
             <div className="space-y-6">
-              {/* Price Section Skeleton */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white/5 p-4 rounded-lg">
                   <LoadingSkeleton className="w-16 h-4 mb-2" />
@@ -99,7 +96,6 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
                 </div>
               </div>
               
-              {/* Stats Skeleton */}
               <div className="grid grid-cols-2 gap-4">
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="border border-white/10 p-4 rounded-lg bg-white/5">
@@ -111,7 +107,6 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
             </div>
           ) : coinDetail ? (
             <div className="space-y-6">
-              {/* Current Price & 24h Change */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-blue-500/10 p-4 rounded-lg border border-blue-500/20">
                   <div className="flex items-center gap-2 mb-2">
@@ -167,7 +162,6 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
                 </div>
               </div>
 
-              {/* Market Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 <div className="border border-white/10 p-4 rounded-lg bg-white/5">
                   <div className="flex items-center gap-2 mb-2">
@@ -240,7 +234,6 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
                 </div>
               </div>
 
-              {/* Description */}
               {coinDetail.description && (
                 <div className="border border-white/10 p-4 rounded-lg bg-white/5">
                   <h3 className="text-lg font-semibold text-white mb-3">About {coinDetail.name}</h3>
