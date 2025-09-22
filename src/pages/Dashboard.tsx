@@ -51,18 +51,6 @@ export const Dashboard: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="relative">
-              <input
-                id="dashboard-search-header"
-                type="text"
-                placeholder="Search BTC, ETH..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-56 px-3 py-2 rounded-lg bg-white/4 placeholder-white/60 outline-none focus:ring-2 focus:ring-[#6EE7F9]/40"
-                aria-label="Search cryptocurrencies"
-              />
-            </div>
-
             <button
               className="p-2 rounded-lg backdrop-blur-sm bg-white/4 hover:bg-white/6 transition relative"
               aria-label="Notifications"
@@ -71,7 +59,6 @@ export const Dashboard: React.FC = () => {
               <Bell className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#7AF27A] shadow-[0_0_10px_rgba(122,242,122,0.45)]" />
             </button>
-
           </div>
         </header>
 
@@ -196,9 +183,9 @@ export const Dashboard: React.FC = () => {
               )}
             </div>
 
-            {/* Bottom row: watchlist + transactions */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <motion.div className="lg:col-span-1 rounded-2xl p-4 bg-white/3 border border-white/6 backdrop-blur-sm">
+            {/* Bottom row: watchlist */}
+            <div className="grid grid-cols-1 gap-4">
+              <motion.div className="rounded-2xl p-4 bg-white/3 border border-white/6 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-semibold">Watchlist</h3>
                   <span className="text-xs text-white/60">3 items</span>
@@ -215,18 +202,6 @@ export const Dashboard: React.FC = () => {
                     <div className="text-sm font-medium text-green-400">+2.3%</div>
                   </div>
                 </div>
-              </motion.div>
-
-              <motion.div className="lg:col-span-2 rounded-2xl p-4 bg-white/3 border border-white/6 backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-semibold">Recent Activity</h3>
-                  <div className="flex items-center gap-2">
-                    <button className="text-xs px-2 py-1 rounded-md bg-white/5">Filter</button>
-                    <button className="text-xs px-2 py-1 rounded-md bg-white/5">Export</button>
-                  </div>
-                </div>
-
-                <div className="text-sm text-white/60">Track your portfolio performance and transaction history here.</div>
               </motion.div>
             </div>
         </main>
