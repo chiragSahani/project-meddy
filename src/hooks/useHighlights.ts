@@ -33,7 +33,7 @@ export const useHighlights = (): UseHighlightsReturn => {
         coinGeckoApi.getCoinsMarket('usd', 'percent_change_asc', 10, 1, false, '24h'),
         coinGeckoApi.getCoinsMarket('usd', 'volume_desc', 10, 1, false, '24h'),
         coinGeckoApi.getTrending(),
-        coinGeckoApi.getCoinsMarket('usd', 'market_cap_desc', 100, 1, false, '7d'),
+        coinGeckoApi.getCoinsMarket('usd', 'market_cap_desc', 200, 1, false, '7d'),
       ]);
 
       setTopGainers(gainersData.map(CoinAdapter.adaptMarketDataToHighlight));

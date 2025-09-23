@@ -110,15 +110,6 @@ export const Highlights: React.FC = () => {
               className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
             />
 
-            <HighlightCard
-              title="7d Top Performers"
-              icon={<TrendingUp className="w-4 h-4 text-[#6EE7F9]" />}
-              coins={top7dPerformers}
-              loading={highlightsLoading}
-              onCoinClick={handleCoinClick}
-              show7dPercentage={true}
-              className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
-            />
           </motion.div>
         )}
 

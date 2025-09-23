@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { Star, Bell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCoinsData } from '../hooks/useCoinsData';
+import { useCoinDetail } from '../hooks/useCoinDetail';
 import { CoinTable } from '../components/CoinTable';
+import { CoinDetailModal } from '../components/CoinDetailModal';
 import { NavigationCard } from '../components/NavigationCard';
+import type { CoinListItem } from '../types';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const {
     coins,
@@ -23,11 +27,28 @@ export const Dashboard: React.FC = () => {
     retry: retryCoins,
   } = useCoinsData();
 
+  const {
+    coinDetail,
+    loading: coinDetailLoading,
+    error: coinDetailError,
+    fetchCoinDetail,
+    clearCoinDetail,
+    retry: retryCoinDetail,
+  } = useCoinDetail();
+
   const handleHighlightsClick = () => {
     navigate('/highlights');
   };
 
-  const handleCoinClick = useCallback(() => {}, []);
+  const handleCoinClick = useCallback(async (coin: CoinListItem) => {
+    setModalOpen(true);
+    await fetchCoinDetail(coin.id);
+  }, [fetchCoinDetail]);
+
+  const handleModalClose = useCallback(() => {
+    setModalOpen(false);
+    clearCoinDetail();
+  }, [clearCoinDetail]);
 
   return (
     <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_left,_#071421,_#02060a)] text-white antialiased">
@@ -38,7 +59,7 @@ export const Dashboard: React.FC = () => {
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#6EE7F9]/20 to-[#C084FC]/18 flex items-center justify-center ring-1 ring-white/6 overflow-hidden">
                 <img
-                  src="https://res.cloudinary.com/dlyctssmy/image/upload/v1758550805/crypto-portfolio-management-vector-58200597_dfropf.avif"
+                  src="https://res.cloudinary.com/dlyctssmy/image/upload/v1758547411/increase_prghdc.png"
                   alt="Crypto Dashboard Logo"
                   className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
                 />
@@ -249,6 +270,16 @@ export const Dashboard: React.FC = () => {
             </>
           )}
         </AnimatePresence>
+
+        {/* Coin detail modal */}
+        <CoinDetailModal
+          isOpen={modalOpen}
+          onClose={handleModalClose}
+          coinDetail={coinDetail}
+          loading={coinDetailLoading}
+          error={coinDetailError}
+          onRetry={retryCoinDetail}
+        />
       </div>
     </div>
   );
