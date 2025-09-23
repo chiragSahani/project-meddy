@@ -7,6 +7,7 @@ import { useCoinDetail } from '../hooks/useCoinDetail';
 import { HighlightCard } from '../components/HighlightCard';
 import { CoinDetailModal } from '../components/CoinDetailModal';
 import { ErrorMessage } from '../components/ErrorMessage';
+import { FullPageLoader } from '../components/LoadingSkeleton';
 
 export const Highlights: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +18,6 @@ export const Highlights: React.FC = () => {
     topLosers,
     highestVolume,
     trendingCoins,
-    top7dPerformers,
     loading: highlightsLoading,
     error: highlightsError,
     retry: retryHighlights,
@@ -36,20 +36,27 @@ export const Highlights: React.FC = () => {
     navigate('/');
   };
 
-  const handleCoinClick = useCallback(async (coinId: string) => {
-    setModalOpen(true);
-    await fetchCoinDetail(coinId);
-  }, [fetchCoinDetail]);
+  const handleCoinClick = useCallback(
+    async (coinId: string) => {
+      setModalOpen(true);
+      await fetchCoinDetail(coinId);
+    },
+    [fetchCoinDetail]
+  );
 
   const handleModalClose = useCallback(() => {
     setModalOpen(false);
     clearCoinDetail();
   }, [clearCoinDetail]);
 
+  // Show full page loader on initial load
+  if (highlightsLoading && topGainers.length === 0 && topLosers.length === 0 && highestVolume.length === 0 && trendingCoins.length === 0) {
+    return <FullPageLoader message="Loading market highlights..." variant="blockchain" />;
+  }
+
   return (
     <div className="min-h-screen bg-[radial-gradient(ellipse_at_top_left,_#071421,_#02060a)] text-white font-inter">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Header */}
         <div className="mb-8">
           <button
             onClick={handleBackToDashboard}
@@ -77,7 +84,7 @@ export const Highlights: React.FC = () => {
               coins={topGainers}
               loading={highlightsLoading}
               onCoinClick={handleCoinClick}
-              showPercentage={true}
+              showPercentage
               className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
             />
 
@@ -87,7 +94,7 @@ export const Highlights: React.FC = () => {
               coins={topLosers}
               loading={highlightsLoading}
               onCoinClick={handleCoinClick}
-              showPercentage={true}
+              showPercentage
               className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
             />
 
@@ -97,7 +104,7 @@ export const Highlights: React.FC = () => {
               coins={highestVolume}
               loading={highlightsLoading}
               onCoinClick={handleCoinClick}
-              showVolume={true}
+              showVolume
               className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
             />
 
@@ -110,10 +117,10 @@ export const Highlights: React.FC = () => {
               className="bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl p-4"
             />
 
+         
           </motion.div>
         )}
 
-        {/* Coin detail modal (keeps existing props) */}
         <CoinDetailModal
           isOpen={modalOpen}
           onClose={handleModalClose}

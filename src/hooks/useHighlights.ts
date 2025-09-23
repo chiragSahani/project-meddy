@@ -28,6 +28,9 @@ export const useHighlights = (): UseHighlightsReturn => {
       setLoading(true);
       setError(null);
 
+      // Add minimum loading time for better UX and to show the technical loader
+      const startTime = Date.now();
+
       const [gainersData, losersData, volumeData, trendingData, performance7dData] = await Promise.all([
         coinGeckoApi.getCoinsMarket('usd', 'percent_change_desc', 10, 1, false, '24h'),
         coinGeckoApi.getCoinsMarket('usd', 'percent_change_asc', 10, 1, false, '24h'),
@@ -56,6 +59,13 @@ export const useHighlights = (): UseHighlightsReturn => {
         .slice(0, 10);
 
       setTop7dPerformers(sorted7dData.map(CoinAdapter.adaptMarketDataToHighlight7d));
+
+      // Ensure minimum loading time of 1.5 seconds to show the technical loader
+      const elapsed = Date.now() - startTime;
+      const minLoadTime = 1500;
+      if (elapsed < minLoadTime) {
+        await new Promise(resolve => setTimeout(resolve, minLoadTime - elapsed));
+      }
     } catch (err) {
       const apiError = err as ApiError;
       setError(apiError.message || 'Failed to fetch highlights data');

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { HighlightCoin } from '../types';
 import { formatCurrency, formatNumber, formatPercentage } from '../utils/formatters';
+import { TechnicalLoader } from './LoadingSkeleton';
 
 interface HighlightCardProps {
   title: string;
@@ -41,21 +42,18 @@ export const HighlightCard: React.FC<HighlightCardProps> = ({
       <div className={`bg-white/4 backdrop-blur-md border border-white/10 rounded-2xl ${className}`}>
         <div className="p-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-white/10 rounded-lg animate-pulse"></div>
-            <div className="w-32 h-5 bg-white/10 rounded animate-pulse"></div>
+            <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+              {icon}
+            </div>
+            <h3 className="text-lg font-semibold text-white/60">{title}</h3>
           </div>
         </div>
-        <div className="p-4 space-y-3">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <div key={index} className="flex items-center gap-3">
-              <div className="w-6 h-6 bg-white/10 rounded-full animate-pulse"></div>
-              <div className="flex-1">
-                <div className="w-24 h-4 bg-white/10 rounded animate-pulse mb-1"></div>
-                <div className="w-16 h-3 bg-white/10 rounded animate-pulse"></div>
-              </div>
-              <div className="w-16 h-4 bg-white/10 rounded animate-pulse"></div>
-            </div>
-          ))}
+        <div className="p-8 flex items-center justify-center">
+          <TechnicalLoader
+            variant="bars"
+            size="md"
+            text="Loading data..."
+          />
         </div>
       </div>
     );

@@ -199,9 +199,13 @@ class MockDataService {
     sparkline = false,
     priceChangePercentage = '24h,7d'
   ): Promise<CoinMarketData[]> {
+    // Suppress unused parameter warnings
+    void vsCurrency;
+    void sparkline;
+    void priceChangePercentage;
     await new Promise(resolve => setTimeout(resolve, 500));
 
-    let sortedCoins = [...this.allCoins];
+    const sortedCoins = [...this.allCoins];
 
     switch (order) {
       case 'market_cap_desc':

@@ -2,7 +2,7 @@ import React from 'react';
 import { X, TrendingUp, TrendingDown, BarChart3, DollarSign } from 'lucide-react';
 import type { CoinDetailData } from '../types';
 import { formatCurrency, formatNumber, formatPercentage } from '../utils/formatters';
-import { LoadingSkeleton } from './LoadingSkeleton';
+import { TechnicalLoader } from './LoadingSkeleton';
 import { ErrorMessage } from './ErrorMessage';
 
 interface CoinDetailModalProps {
@@ -47,11 +47,8 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
         <div className="sticky top-0 bg-[#071421]/95 backdrop-blur-md border-b border-white/10 p-4 sm:p-6 flex items-center justify-between">
           {loading ? (
             <div className="flex items-center gap-3">
-              <LoadingSkeleton className="w-10 h-10 rounded-full" />
-              <div className="space-y-1">
-                <LoadingSkeleton className="w-32 h-6" />
-                <LoadingSkeleton className="w-16 h-4" />
-              </div>
+              <TechnicalLoader variant="spinner" size="sm" />
+              <div className="text-lg font-semibold text-white/80">Loading...</div>
             </div>
           ) : coinDetail ? (
             <div className="flex items-center gap-3">
@@ -84,26 +81,13 @@ export const CoinDetailModal: React.FC<CoinDetailModalProps> = ({
           )}
 
           {loading ? (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-white/5 p-4 rounded-lg">
-                  <LoadingSkeleton className="w-16 h-4 mb-2" />
-                  <LoadingSkeleton className="w-24 h-8" />
-                </div>
-                <div className="bg-white/5 p-4 rounded-lg">
-                  <LoadingSkeleton className="w-20 h-4 mb-2" />
-                  <LoadingSkeleton className="w-16 h-6" />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="border border-white/10 p-4 rounded-lg bg-white/5">
-                    <LoadingSkeleton className="w-16 h-4 mb-2" />
-                    <LoadingSkeleton className="w-20 h-6" />
-                  </div>
-                ))}
-              </div>
+            <div className="flex items-center justify-center py-16">
+              <TechnicalLoader
+                variant="crypto"
+                size="lg"
+                text="Loading coin details..."
+                className="text-center"
+              />
             </div>
           ) : coinDetail ? (
             <div className="space-y-6">
