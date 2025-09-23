@@ -15,6 +15,7 @@ export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [localSearchTerm, setLocalSearchTerm] = useState('');
 
   const {
     coins,
@@ -166,8 +167,11 @@ export const Dashboard: React.FC = () => {
                     id="dashboard-search"
                     type="text"
                     placeholder="Search coins..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    value={localSearchTerm}
+                    onChange={(e) => {
+                      setLocalSearchTerm(e.target.value);
+                      setSearchTerm(e.target.value);
+                    }}
                     className="w-full sm:w-48 md:w-64 px-3 py-2 text-sm rounded-lg bg-white/5 placeholder-white/60 outline-none focus:ring-2 focus:ring-[#6EE7F9]/30"
                     aria-label="Search cryptocurrencies"
                   />

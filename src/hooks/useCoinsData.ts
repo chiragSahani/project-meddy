@@ -90,11 +90,9 @@ export const useCoinsData = (): UseCoinsDataReturn => {
       clearTimeout(searchTimeoutRef.current);
     }
 
-    const timeout = setTimeout(() => {
+    searchTimeoutRef.current = setTimeout(() => {
       setSearchTerm(term);
-    }, 300);
-
-    searchTimeoutRef.current = timeout;
+    }, 150);
   }, []);
 
   useEffect(() => {
