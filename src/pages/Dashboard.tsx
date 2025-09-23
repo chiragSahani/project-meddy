@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, Bell } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import { useCoinsData } from '../hooks/useCoinsData';
 import { useCoinDetail } from '../hooks/useCoinDetail';
@@ -13,7 +13,6 @@ import type { CoinListItem } from '../types';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const [showNotifications, setShowNotifications] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [localSearchTerm, setLocalSearchTerm] = useState('');
 
@@ -22,7 +21,6 @@ export const Dashboard: React.FC = () => {
     loading: coinsLoading,
     error: coinsError,
     hasMore,
-    searchTerm,
     sortBy,
     setSearchTerm,
     setSortBy,
@@ -83,17 +81,6 @@ export const Dashboard: React.FC = () => {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              aria-label="Notifications"
-              onClick={() => setShowNotifications((s) => !s)}
-              className="relative p-2 rounded-lg backdrop-blur-sm bg-white/4 hover:bg-white/6 transition"
-            >
-              <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#7AF27A] shadow-[0_0_8px_rgba(122,242,122,0.45)]" />
-            </button>
           </div>
         </header>
 
@@ -221,83 +208,8 @@ export const Dashboard: React.FC = () => {
             )}
           </section>
 
-          <div className="grid grid-cols-1 gap-3 sm:gap-4">
-            <motion.div className="rounded-xl sm:rounded-2xl p-3 sm:p-4 bg-white/3 border border-white/6 backdrop-blur-sm">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xs sm:text-sm font-semibold">Watchlist</h3>
-                <span className="text-xs text-white/60">3 items</span>
-              </div>
-              <div className="mt-3 space-y-2">
-                <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-white/4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center font-semibold text-orange-400">₿</div>
-                    <div>
-                      <div className="text-sm font-medium">Bitcoin</div>
-                      <div className="text-xs text-white/60">BTC</div>
-                    </div>
-                  </div>
-                  <div className="text-sm font-medium text-green-400">+2.3%</div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
         </main>
 
-        <AnimatePresence>
-          {showNotifications && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-                onClick={() => setShowNotifications(false)}
-                aria-hidden
-              />
-              <motion.aside
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 12 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-                className="fixed right-4 bottom-4 w-[calc(100vw-2rem)] max-w-sm sm:max-w-md lg:max-w-lg rounded-xl sm:rounded-2xl p-3 sm:p-4 bg-white/4 border border-white/6 backdrop-blur-sm shadow-lg z-50"
-                role="dialog"
-                aria-label="Notifications"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-semibold">Notifications</h4>
-                  <button
-                    type="button"
-                    onClick={() => setShowNotifications(false)}
-                    className="text-sm text-white/60"
-                  >
-                    Close
-                  </button>
-                </div>
-                <div className="space-y-2">
-                  <div className="p-3 rounded-lg bg-white/3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#7AF27A]/20 flex items-center justify-center">✓</div>
-                      <div>
-                        <div className="text-sm font-medium">Price Alert Triggered</div>
-                        <div className="text-xs text-white/60">Bitcoin crossed $67,000</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-3 rounded-lg bg-white/3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#B388FF]/20 flex items-center justify-center">📈</div>
-                      <div>
-                        <div className="text-sm font-medium">Market Update</div>
-                        <div className="text-xs text-white/60">Crypto market up 3.2% today</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.aside>
-            </>
-          )}
-        </AnimatePresence>
 
         <CoinDetailModal
           isOpen={modalOpen}
