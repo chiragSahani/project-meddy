@@ -49,7 +49,7 @@ export const Highlights: React.FC = () => {
     clearCoinDetail();
   }, [clearCoinDetail]);
 
-  // Show full page loader on initial load
+ 
   if (highlightsLoading && topGainers.length === 0 && topLosers.length === 0 && highestVolume.length === 0 && trendingCoins.length === 0) {
     return <FullPageLoader message="Loading market highlights..." variant="blockchain" />;
   }

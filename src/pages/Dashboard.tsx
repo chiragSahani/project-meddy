@@ -54,7 +54,6 @@ export const Dashboard: React.FC = () => {
     clearCoinDetail();
   }, [clearCoinDetail]);
 
-  // Show full page loader on initial load
   if (coinsLoading && coins.length === 0) {
     return <FullPageLoader message="Loading crypto market data..." variant="crypto" />;
   }
