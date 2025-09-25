@@ -24,13 +24,13 @@ export const useCoinDetail = (): UseCoinDetailReturn => {
       setError(null);
       setLastFetchedId(id);
 
-      // Add minimum loading time for better UX and to show the technical loader
+     
       const startTime = Date.now();
 
       const data = await coinGeckoApi.getCoinDetail(id);
       const adaptedData = CoinAdapter.adaptCoinDetailToDetailData(data);
 
-      // Ensure minimum loading time of 1 second to show the technical loader
+      
       const elapsed = Date.now() - startTime;
       const minLoadTime = 1000;
       if (elapsed < minLoadTime) {
