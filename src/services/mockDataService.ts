@@ -199,7 +199,7 @@ class MockDataService {
     sparkline = false,
     priceChangePercentage = '24h,7d'
   ): Promise<CoinMarketData[]> {
-    // Suppress unused parameter warnings
+  
     void vsCurrency;
     void sparkline;
     void priceChangePercentage;
